@@ -20,7 +20,7 @@ class AuthController extends Controller
         ]);
 
         if($validator -> fails()){
-            return response() -> json($validator -> errors());
+            return $this -> errorResponse('Validation Error -> ' . $validator -> errors() -> __toString());
         }
 
         $user = User::create([
@@ -37,4 +37,6 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
+
+
 }
